@@ -8,7 +8,7 @@
 	
 	<div class="row">
 		<div class="col-lg-6">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
+			<button type="button" class="btn btn-primary tombolTambahData" data-toggle="modal" data-target="#formModal">
   				Tambah Data Mahasiswa
 			</button>
 			<br><br>
@@ -18,6 +18,8 @@
 					<li class="list-group-item">
 						<?= $mhs['nama']; ?>
 						<a href=<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id']; ?>" class="badge badge-danger float-right ml-1" onclick="return confirm('yakin?');">hapus</a>
+						<a href=<?= BASEURL; ?>/mahasiswa/ubah/<?= $mhs['id']; ?>" class="badge badge-success float-right ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal" 
+						data-id="<?=$mhs['id']; ?>">ubah</a>
 						<a href=<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>" class="badge badge-primary float-right ml-1">detail</a>
 						</li>
 					<?php endforeach; ?>
@@ -30,11 +32,11 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="judulModal" aria-hidden="true">
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="judulModal">Tambah Data Mahasiswa</h5>
+        <h5 class="modal-title" id="formModalLabel">Tambah Data Mahasiswa</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -42,19 +44,23 @@
       <div class="modal-body">
         
 		<form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
+			<input type="hidden" name="id" id="id">
 			<div class="form-group">
 				<label for="nama">Nama</label>
-				<input type="text" class="form-control" 					id="nama" name="nama">
+				<input type="text" class="form-control" 					id="nama" name="nama"
+				autocomplete="off" required>
 			</div>
 
 			<div class="form-group">
 				<label for="nama">NRP</label>
-				<input type="number" class="form-control" 					id="nrp" name="nrp">
+				<input type="number" class="form-control" 					id="nrp" name="nrp"
+				autocomplete="off" required>
 			</div>
 
 			<div class="form-group">
 				<label for="nama">Email</label>
-				<input type="email" class="form-control" 					id="email" name="email">
+				<input type="email" class="form-control" 					id="email" name="email"
+				autocomplete="off" required>
 			</div>
 
 			<div class="form-group">
